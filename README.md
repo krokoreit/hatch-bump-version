@@ -17,7 +17,7 @@ Use it by adding "hatch-bump-version" to the build-system requiremets:
 
 It will then run as a hook before the build process.
 
-For the time being use 'git bump-version' to retrieve the version and bump patch if needed.
+For the time being uses 'git bump-version' to retrieve the version and bump patch if needed.
 
 
 Using 'hatch version' ??
