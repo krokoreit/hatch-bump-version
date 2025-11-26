@@ -3,4 +3,4 @@ __all__ = [
     "BumpVersionBuildHook"
 ]
 
-from .hatch_bump_version.bump_version_build_hook import BumpVersionBuildHook
+from .bump_version_build_hook import BumpVersionBuildHook
