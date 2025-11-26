@@ -12,6 +12,8 @@ class BumpVersionBuildHook(BuildHookInterface):
         print("version:", version)
         print("build_data:", build_data)
 
+        
+
         git_tag = get_git_tag()
         hatch_version = get_hatch_version()
         published = read_published_version()
