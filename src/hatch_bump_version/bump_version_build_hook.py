@@ -7,20 +7,17 @@ class BumpVersionBuildHook(BuildHookInterface):
     PLUGIN_NAME = "bump_version" # use in [tool.hatch.build.hooks.bump_version]
 
     def initialize(self, version, build_data):
-
-        print("BumpVersionBuildHook() ")
-        print("version:", version)
-        print("build_data:", build_data)
-
-        
+        """Compares build and published versions and bumps version if needed."""
 
         git_tag = get_git_tag()
         hatch_version = get_hatch_version()
         published = read_published_version()
 
-        print(f"[BumpVersionBuildHook] git tag         = {git_tag}")
-        print(f"[BumpVersionBuildHook] hatch version   = {hatch_version}")
-        print(f"[BumpVersionBuildHook] published       = {published}")
+        show_versions = False
+        if show_versions:
+            print(f"[BumpVersionBuildHook] git tag         = {git_tag}")
+            print(f"[BumpVersionBuildHook] hatch version   = {hatch_version}")
+            print(f"[BumpVersionBuildHook] published       = {published}")
 
         # Only run git bump-version if git tag == last published
         if git_tag and published and git_tag == published:
@@ -29,7 +26,9 @@ class BumpVersionBuildHook(BuildHookInterface):
         else:
             print("[BumpVersionBuildHook] No version bump needed.")
 
+
     def _run_git_bump_version(self):
+        """Tries to run git bump-version."""
         try:
             subprocess.run(
                 ["git", "bump-version", "-Y"],
