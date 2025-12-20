@@ -14,6 +14,7 @@ class BumpVersionBuildHook(BuildHookInterface):
         published = read_published_version()
 
         show_versions = False
+        #show_versions = True
         if show_versions:
             print(f"[BumpVersionBuildHook] git tag         = {git_tag}")
             print(f"[BumpVersionBuildHook] hatch version   = {hatch_version}")
@@ -23,6 +24,9 @@ class BumpVersionBuildHook(BuildHookInterface):
         if git_tag and published and git_tag == published:
             print("[BumpVersionBuildHook] Version already published → bumping version…")
             self._run_git_bump_version()
+            # update metadata._version with hatch version reading git tag
+            hatch_version = get_hatch_version()
+            self.metadata._version = hatch_version
         else:
             print("[BumpVersionBuildHook] No version bump needed.")
 

@@ -4,10 +4,10 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/hatch-bump-version.svg)](https://pypi.org/project/hatch-bump-version)
 
 
-This package provides the PreIndebump version build hook for hatch.
+This package provides the bump version build hook for hatch.
 
-It purpose is to check the project version and automatically increment it when the current version has already be published.
-This avoids the annoying 'already published' message after having tried to publish a project to PyPI.
+It purpose is to check the project version and automatically increment it when the current version has already been published.
+This avoids the annoying 'already published' message when trying to publish a project to PyPI.
 
 Use it by adding "hatch-bump-version" to the build-system requiremets:
 ```py
