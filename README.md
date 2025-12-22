@@ -6,17 +6,27 @@
 
 This package provides the bump version build hook for hatch.
 
-It purpose is to check the project version and automatically increment it when the current version has already been published.
-This avoids the annoying 'already published' message when trying to publish a project to PyPI.
+It purpose is to check the project version number and to automatically increment it in case the current version has already been published. This avoids the annoying 'already published' message when trying to publish a project to PyPI.
 
-Use it by adding "hatch-bump-version" to the build-system requiremets:
+Use the pre-index-publisher to track the version published and provide the information for this build hook.
+
+Add "hatch-bump-version" to the build-system requirements in your project's pyproject.toml
 ```py
   [build-system]
   requires = ["hatchling", "hatch-bump-version"]
 ```
+Also include a settings section for [tool.hatch.build.hooks.bump_version] (with 'bump_version' being the name of the plugin). No entries for the plugin are required, but the section must be included for the plugin to be activated.
+```py
+  [tool.hatch.build.hooks.bump_version]
+  #nothing for this plugin 
+```
 
-It will then run as a hook before the build process.
+The pluging will then run as a hook before the build process.
 
+
+</br>
+
+Notes for Development:  
 For the time being uses 'git bump-version' to retrieve the version and bump patch if needed.
 
 
@@ -49,30 +59,20 @@ pip install hatch-bump-version
 ```
 
 
-## Usage & API
-
-### hatch_pre_index Class
-Import module:
+## Usage
+When your project's pyproject.toml contains "hatch-bump-version" in the build-system requirements and a [tool.hatch.build.hooks.bump_version] section, the plugin is automatically started before the actual build process triggered by
 ```py
-  hatch publish -p pre_index
+  hatch build
 ```
-
-
-</br>
-
-### API
-
-#### Methods
-* [aaa()](#aaa-method)  
-* [bbb()](#bbb-method)  
-
-
-#### aaa() Method
+It will then display in the console either
 ```py
-  sss
+  [BumpVersionBuildHook] No version bump needed.
 ```
-
-<div style="text-align: right"><a href="#methods">&#8679; back up to list of methods</a></div>
+or
+```py
+  [BumpVersionBuildHook] Version already published → bumping version...
+```
+followed by the information given by the bump version script.
 
 
 </br>
