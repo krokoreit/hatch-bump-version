@@ -4,7 +4,8 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/hatch-bump-version.svg)](https://pypi.org/project/hatch-bump-version)
 
 
-This package provides the bump version build hook for hatch. It builds on the git plumbing script to increment the version number in a project's git tag (download from https://github.com/krokoreit/git-bump-version).
+This package provides the bump version build hook for hatch.  
+It builds on the git plumbing script to increment the version number in a project's git tag (download from https://github.com/krokoreit/git-bump-version).
 
 It purpose is to check the project version number and to automatically increment it in case the current version has already been published. This avoids the annoying 'already published' message when trying to publish a project to PyPI.
 
