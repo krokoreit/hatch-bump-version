@@ -14,6 +14,15 @@ Add "hatch-bump-version" to the build-system requirements in your project's pypr
 ```py
   [build-system]
   requires = ["hatchling", "hatch-bump-version"]
+  requires = [
+    "hatchling",
+    # use now to install from local file
+    "hatch-bump-version@file://D:/Dev/Python/.gh.module_dev/hatch_bump_version",
+    # use later with plugin on PyPI
+    # "hatch-bump-version",
+    "hatch-vcs"
+  ]
+
 ```
 Also include a settings section for [tool.hatch.build.hooks.bump_version] (with 'bump_version' being the name of the plugin). No entries for the plugin are required, but the section must be included for the plugin to be activated.
 ```py
@@ -53,10 +62,7 @@ Enjoy
 
 
 ## Installation
-
-```console
-pip install hatch-bump-version
-```
+The plugin will be installed by hatch when creating the build environment. There no need to install it manually.
 
 
 ## Usage
