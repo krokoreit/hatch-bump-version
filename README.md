@@ -4,7 +4,7 @@
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/hatch-bump-version.svg)](https://pypi.org/project/hatch-bump-version)
 
 
-This package provides the bump version build hook for hatch.
+This package provides the bump version build hook for hatch. It builds on the git plumbing script to increment the version number in a project's git tag (download from https://github.com/krokoreit/git-bump-version).
 
 It purpose is to check the project version number and to automatically increment it in case the current version has already been published. This avoids the annoying 'already published' message when trying to publish a project to PyPI.
 
@@ -13,13 +13,9 @@ Use the pre-index-publisher to track the version published and provide the infor
 Add "hatch-bump-version" to the build-system requirements in your project's pyproject.toml
 ```py
   [build-system]
-  requires = ["hatchling", "hatch-bump-version"]
   requires = [
     "hatchling",
-    # use now to install from local file
-    "hatch-bump-version@file://D:/Dev/Python/.gh.module_dev/hatch_bump_version",
-    # use later with plugin on PyPI
-    # "hatch-bump-version",
+    "hatch-bump-version",
     "hatch-vcs"
   ]
 
@@ -34,23 +30,6 @@ The pluging will then run as a hook before the build process.
 
 
 </br>
-
-Notes for Development:  
-For the time being uses 'git bump-version' to retrieve the version and bump patch if needed.
-
-
-Using 'hatch version' ??
-Consider for future versions, as 'hatch version' brings alreay the required functionality to bump or set to version string.
-However, it requires an pyproject.toml entry of
-```py
-  [tool.hatch.version]
-  path = "./src/spNewProj1Py/__about__.py"
-```
-and the file, e.g. '__about__.py' existing with a string variable of __version__ or VERSION defined
-```py
-  __version__ = "2.0.0"
-```
-Maybe possible to check and add if missing. Alternatively catch the exception when running 'hatch version' and inform the use to set them up manually.
 
 
 
